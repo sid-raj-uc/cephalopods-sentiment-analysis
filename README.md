@@ -1,13 +1,13 @@
 # Cephalopod Behavioral Sentiment Analysis
 ### GSoC 2026 Entry Task
 
-Extracts and visualises interpretable behavioral features from a cephalopod video clip to infer animal activity and sentiment state.
+Extracts and visualises interpretable behavioral features from a cephalopod video clip to infer animal activity and sentiment state. For the full write-up, see [`report.tex`](report.tex).
 
 ---
 
 ## Overview
 
-This project analyzes a short video of an octopus to detect behavioral patterns — specifically identifying periods of high activity, locomotion, and skin-pattern changes driven by chromatophores. Two simple, interpretable features are extracted frame-by-frame and combined into a normalized activity score.
+This project analyzes a 59-second video of an octopus (3:34–4:33, 1280×720 px, 23.98 fps) to detect behavioral patterns — identifying periods of high activity, locomotion, and skin-pattern changes driven by chromatophores. Two simple features are extracted frame-by-frame and combined into a normalized activity score.
 
 ---
 
@@ -51,8 +51,9 @@ Combined activity score with numbered event labels overlaid.
 ```
 .
 ├── analyze.py                        # Main script — extracts features, saves .npz, generates plot
-├── cephalopod_analysis.ipynb         # Primary notebook — full pipeline + written analysis (GSoC submission)
-├── activity_visualization.ipynb      # Secondary notebook — deep dive into activity events and frames
+├── cephalopod_analysis.ipynb         # Primary notebook — full pipeline (GSoC submission)
+├── activity_visualization.ipynb      # Secondary notebook — activity events and frame viewer
+├── report.tex                        # Full written report with analysis and all plots
 ├── requirements.txt
 ├── data/
 │   ├── data_octopus.mp4              # 720p video clip (see Setup below)
@@ -111,7 +112,7 @@ Any 30–60 second video of an aquatic animal will work as a substitute — just
 Run `analyze.py` once to extract features and save them to a `.npz` file. This is the slow step (loads all frames).
 
 ```bash
-python analyze.py                        # uses data/data_octopus.mp4 by default
+python analyze.py                         # uses data/data_octopus.mp4 by default
 python analyze.py path/to/your_video.mp4  # or pass a custom path
 ```
 
@@ -135,7 +136,6 @@ The primary GSoC submission notebook. Contains:
 - Video frame preview
 - Feature extraction code with explanations
 - 3-panel behavioral analysis plot
-- Short written analysis (behavioral interpretation + limitations)
 
 #### `activity_visualization.ipynb`
 Deeper dive into the results. Contains:
@@ -143,13 +143,13 @@ Deeper dive into the results. Contains:
 - Activity event table (all events with start/end times, duration, dominant feature)
 - Timeline with numbered event labels
 
----
+### Step 3 — Read the report
 
-## Short Analysis
+`report.tex` contains the full written analysis — feature descriptions with equations, behavioral interpretation, limitations, and all output plots. Compile with:
 
-The two features provide complementary windows into cephalopod behavioral state. Motion magnitude quantifies locomotor activity, capturing transitions between resting, slow crawling, and rapid escape or hunting behavior. Histogram change is particularly relevant for cephalopods because it tracks dynamic skin patterning produced by chromatophores, iridophores, and papillae — structures known to encode emotional and communicative signals. In this clip, early spikes in histogram change coincide with elevated motion, consistent with the animal actively repositioning in response to stimuli. Subsequent motion fluctuations with more stable histograms suggest lower-intensity locomotion without strong camouflage adjustments.
-
-The main limitations are sensitivity to camera movement and uncontrolled backgrounds, both of which produce false positives unrelated to animal behaviour. Averaging pixel values over the full frame also conflates animal activity with environmental noise — foreground segmentation would substantially improve signal quality. Integrating additional modalities would greatly enrich the analysis: 3D pose estimation via deep learning keypoint models would add fine-grained body posture features linked to specific behavioral states, while hydrophone signals could detect jet propulsion bursts correlated with escape responses. Combining these with temporal models (HMMs or LSTMs) would enable reliable automatic behavioural state segmentation.
+```bash
+pdflatex report.tex
+```
 
 ---
 
@@ -163,3 +163,4 @@ The main limitations are sensitivity to camera movement and uncontrolled backgro
 | `scipy` | Signal smoothing (`uniform_filter1d`), peak detection (`find_peaks`) |
 | `pandas` | Activity event table |
 | `jupyter` | Running notebooks |
+| `ipykernel` | Registering the virtual environment as a Jupyter kernel |

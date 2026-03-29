@@ -162,47 +162,29 @@ where $\hat{\cdot}$ denotes min-max normalisation to $[0, 1]$.
 \end{figure}
 
 % ─────────────────────────────────────────────────────────────────────────────
-\section{Analysis}
+\section{Observations}
 
-The two features provide complementary windows into cephalopod behavioral
-state. Motion magnitude quantifies locomotor activity, capturing transitions
-between resting, slow crawling, and rapid escape or hunting behavior.
-Histogram change is particularly relevant for cephalopods because it tracks
-dynamic skin patterning produced by chromatophores, iridophores, and
-papillae — structures known to encode emotional and communicative signals.
-In this clip, early spikes in histogram change coincide with elevated motion,
-consistent with the animal actively repositioning in response to stimuli.
-Subsequent motion fluctuations with more stable histograms suggest
-lower-intensity locomotion without strong camouflage adjustments.
-
-The main limitations are sensitivity to camera movement and uncontrolled
-backgrounds, both of which produce false positives unrelated to animal
-behaviour. Averaging pixel values over the full frame also conflates animal
-activity with environmental noise — foreground segmentation would
-substantially improve signal quality. At $\sim$24\,fps, rapid chromatophore
-flickers may also be temporally aliased, and slow tonal gradients require
-longer recordings to detect reliably.
-
-Integrating additional modalities would greatly enrich the analysis. 3D pose
-estimation via deep learning keypoint models would add fine-grained body
-posture features linked to specific behavioral states such as threat displays
-or mating dances. Hydrophone or audio signals could detect jet propulsion
-bursts correlated with escape responses. Combining these signals with temporal
-context models — for example Hidden Markov Models or LSTMs — would enable
-reliable, automatic behavioural state segmentation with far greater specificity.
+Early spikes in histogram change coincide with elevated motion, consistent
+with the animal actively repositioning in response to a stimulus. Subsequent
+segments show motion fluctuations with relatively stable histograms, suggesting
+lower-intensity locomotion without strong camouflage adjustments. The activity
+timeline reveals a pattern of short, discrete bursts rather than sustained
+high-activity periods, which is typical of exploratory or foraging behaviour
+in benthic octopuses.
 
 % ─────────────────────────────────────────────────────────────────────────────
 \section{Reproducibility}
 
-All code is available in the accompanying repository. To reproduce:
+Full setup and usage instructions are in \texttt{README.md}. In brief:
 
 \begin{enumerate}
     \item Create and activate the virtual environment: \texttt{source env/bin/activate}
     \item Install dependencies: \texttt{pip install -r requirements.txt}
-    \item Download and prepare the video (see \texttt{README.md})
+    \item Download and prepare the video clip (see \texttt{README.md} $\to$ Setup)
     \item Run \texttt{python analyze.py} to extract features and generate plots
     \item Open \texttt{cephalopod\_analysis.ipynb} for the full annotated pipeline
     \item Open \texttt{activity\_visualization.ipynb} for activity event exploration
+    \item Compile this report: \texttt{pdflatex report.tex}
 \end{enumerate}
 
 \end{document}
