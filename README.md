@@ -153,6 +153,12 @@ pdflatex report.tex
 
 ---
 
+## Behavioral Interpretation
+
+Motion magnitude tracks locomotor activity — separating rest from crawling, swimming, or escape jetting. Histogram change captures chromatophore-driven skin patterning, which cephalopods use for camouflage and communication. High values in both features together suggest active or defensive behaviour; high histogram change with low motion likely reflects stationary camouflage adjustment. The main limitation is that both signals are computed over the full frame, so background movement and camera shake can mimic real animal activity. Foreground segmentation or animal tracking would be needed to make the features truly animal-specific. Adding a hydrophone would help detect jet propulsion bursts, and pose estimation would expose arm posture and mantle state — both strong indicators of behavioural intent. A temporal model like an HMM or LSTM combining these signals could reliably segment behavioural states with much greater precision.
+
+---
+
 ## Dependencies
 
 | Package | Purpose |
