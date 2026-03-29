@@ -1,7 +1,7 @@
 # Cephalopod Behavioral Sentiment Analysis
 ### GSoC 2026 Entry Task
 
-Extracts and visualises interpretable behavioral features from a cephalopod video clip to infer animal activity and sentiment state. For the full write-up, see [`report.tex`](report.tex).
+Extracts and visualises interpretable behavioral features from a cephalopod video clip to infer animal activity and sentiment state. For the full write-up, see [`cephalopods_sentiment_report.pdf`](https://github.com/sid-raj-uc/cephalopods-sentiment-analysis/blob/main/cephalopods_sentiment_report.pdf).
 
 ---
 
